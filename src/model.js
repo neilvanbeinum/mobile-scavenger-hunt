@@ -3,8 +3,34 @@
 
   function Model () {
     if (!localStorage['scavenger-hunt']) {
-      localStorage['scavenger-hunt'] = "[false, false, false, false, false]";
-      //TODO supply codes at start
+      var stamps = [
+        {
+          code: 1111,
+          completed : false,
+          clue: 'Machine for making tasty caffeinated beverages. By which I mean coffee.',
+        },
+        {
+          code: 3434,
+          completed : false,
+          clue: 'Anagram of INEPTRR',
+        },
+        {
+          code: 5452,
+          completed : false,
+          clue: 'Desk with a view',
+        },
+        {
+          code: 2525,
+          completed : false,
+          clue: 'Inferno!',
+        },
+        {
+          code: 7887,
+          completed : false,
+          clue: "The location where Pat puts...It's the post box. Go to the post box.",
+        }
+      ];
+      localStorage['scavenger-hunt'] = JSON.stringify(stamps);
     }
   }
 
@@ -13,23 +39,19 @@
   };
 
   Model.prototype.saveStamp = function (stampCode, callback) {
-    var success = true;
-    var stamps = JSON.parse(localStorage['scavenger-hunt']);
-    if (stampCode === '1111') {
-      stamps[0] = true;
-    } else if (stampCode === '3434') {
-      stamps[1] = true;
-    } else if (stampCode === '5452') {
-      stamps[2] = true;
-    } else if (stampCode === '0022') {
-      stamps[3] = true;
-    } else if (stampCode === '7887') {
-      stamps[4] = true;
-    } else if (stampCode === '8888') {
-      stamps[5] = true;
-    } else {
-      success = false;
+    var i,
+        currentStamp,
+        success = false,
+        stamps = JSON.parse(localStorage['scavenger-hunt']);
+
+    for (i = 0; i < stamps.length; i += 1) {
+      currentStamp = stamps[i];
+      if (currentStamp.code === stampCode) {
+        currentStamp.completed = true;
+        success = true;
+      }
     }
+
     localStorage['scavenger-hunt'] = JSON.stringify(stamps);
     callback(success, stamps);
   };

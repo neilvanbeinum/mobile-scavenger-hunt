@@ -25,8 +25,11 @@
   View.prototype.renderStamps = function (stamps) {
     var i;
     for (i = 0; i < this.$stampsList.children.length; i += 1) {
-      this.$stampsList.children[i].children[0].checked = stamps[i];
+      this.$stampsList.children[i].children[0].checked = stamps[i].completed;
     }
+
+    //TODO: Find next stamp and display clue and show found location
+
     console.log(stamps);
   };
 
