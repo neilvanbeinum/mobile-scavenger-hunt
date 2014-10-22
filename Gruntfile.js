@@ -40,12 +40,23 @@ module.exports = function (grunt) {
           }
         }
       }
+    },
+    jasmine: {
+      src: 'src/*.js',
+      options: {
+        specs: 'specs/*.js'
+      }
+    },
+    jshint: {
+      all: ['src/*.js']
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('default', ['browserSync', 'watch']);
 };
