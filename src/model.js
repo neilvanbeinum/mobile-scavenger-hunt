@@ -7,27 +7,27 @@
         {
           code: 1111,
           completed : false,
-          clue: 'Machine for making tasty caffeinated beverages. By which I mean coffee.',
+          clue: 'Machine for making tasty caffeinated beverages.'
         },
         {
           code: 3434,
           completed : false,
-          clue: 'Anagram of INEPTRR',
+          clue: 'Anagram of INEPTRR'
         },
         {
           code: 5452,
           completed : false,
-          clue: 'Desk with a view',
+          clue: 'Where the jackets hang out'
         },
         {
           code: 2525,
           completed : false,
-          clue: 'Inferno!',
+          clue: 'Inferno!'
         },
         {
           code: 7887,
           completed : false,
-          clue: "The location where Pat puts...It's the post box. Go to the post box.",
+          clue: "I need a pen"
         }
       ];
       localStorage['scavenger-hunt'] = JSON.stringify(stamps);
