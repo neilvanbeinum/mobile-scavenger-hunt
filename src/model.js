@@ -39,17 +39,24 @@
   };
 
   Model.prototype.saveStamp = function (stampCode, callback) {
-    var i,
-        currentStamp,
+    var i = 0,
+        stampToFind,
+        code = parseInt(stampCode),
         success = false,
         stamps = JSON.parse(localStorage['scavenger-hunt']);
 
-    for (i = 0; i < stamps.length; i += 1) {
-      currentStamp = stamps[i];
-      if (currentStamp.code === stampCode) {
-        currentStamp.completed = true;
-        success = true;
-      }
+    while(i < stamps.length && stamps[i].completed) {
+      i += 1;
+    }
+
+    if (i === stamps.length) {
+      return;
+    }
+
+    stampToFind = stamps[i];
+    if (stampToFind.code === code) {
+      stampToFind.completed = true;
+      success = true;
     }
 
     localStorage['scavenger-hunt'] = JSON.stringify(stamps);

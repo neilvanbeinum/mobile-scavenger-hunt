@@ -18,22 +18,32 @@
   };
 
   View.prototype.renderInvalidCode = function () {
-    console.log('invalid');
+    this.$codeResponse.innerText = "Code does't match the clue! Try again.";
+    this.$code.value = '';
   };
 
   View.prototype.renderValidCode = function () {
-    console.log('valid');
+    this.$codeResponse.innerText = 'You found the code!';
+    this.$code.value = '';
   };
 
   View.prototype.renderStamps = function (stamps) {
-    var i;
-    for (i = 0; i < this.$stampsList.children.length; i += 1) {
-      this.$stampsList.children[i].children[0].checked = stamps[i].completed;
+    var nextStampIndex = 0,
+        stampListItem;
+
+    while(nextStampIndex < stamps.length && stamps[nextStampIndex].completed) {
+      stampListItem = this.$stampsList.children[nextStampIndex];
+      stampListItem.children[0].checked = true;
+      stampListItem.children[1].style.display = 'inline';
+      nextStampIndex += 1;
     }
 
-    //TODO: Find next stamp and display clue and show found location
-
-    console.log(stamps);
+    if(nextStampIndex >= stamps.length) {
+      this.$winResponse.innerText = 'You win the scavenger hunt!';
+    }
+    else {
+      this.$clue.innerText = stamps[nextStampIndex].clue;
+    }
   };
 
   window.app = window.app || {};
