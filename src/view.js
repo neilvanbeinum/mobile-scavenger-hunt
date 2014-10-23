@@ -2,7 +2,10 @@
   'use strict';
 
   function View () {
+    this.$clue = document.querySelector('.clue');
     this.$code = document.querySelector('#code');
+    this.$codeResponse = document.querySelector('.code-response');
+    this.$winResponse = document.querySelector('.win-response');
     this.$stampsList = document.querySelector('.stamps');
   }
 
