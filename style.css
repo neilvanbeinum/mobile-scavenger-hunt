@@ -1,0 +1,4 @@
+.stamps span {
+  display: none;
+  text-decoration: line-through;
+}
